@@ -7,6 +7,8 @@ import java.util.List;
 import java.io.Console;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.*;
+import java.util.Scanner;
 
 public class Marker extends User{
 	// private String UserName;
@@ -86,6 +88,7 @@ public class Marker extends User{
             System.out.println("Please create or load an assignment file first!");
         return false;
     }
+    
 
     private boolean reportFn (String arguments[]) {
         if (assignment != null)

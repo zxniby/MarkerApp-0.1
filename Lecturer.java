@@ -44,7 +44,7 @@ public class Lecturer extends Marker{
 
 	}
 
-	    private boolean createFn(String[] arguments) {
+    private boolean createFn(String[] arguments) {
         if (arguments.length != 2) {
             System.out.print("You must specify a spec file and a student list");
             return false;
