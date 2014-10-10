@@ -210,8 +210,7 @@ public class User{
 
     public void logout(){
     	System.out.println("Logout successfully!");
-    	System.exit(0);
-
+        MarkerApp.login();
     }
 
 }

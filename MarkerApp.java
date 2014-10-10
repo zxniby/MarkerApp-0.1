@@ -27,11 +27,105 @@ public class MarkerApp {
 		// User tempuser = new User();
 		// boolean flag;
 
+    //     boolean flag = true;
+    //     String tempRole;
+    //     String tempFname;
+    //     String tempLname;
+    //     String tempUname;
+    //     String tempPasswd;
+		
+    //     while(flag){
+            
+    //         Console console = System.console();
+    //         String uname, passwd;
+    //     //read username from user's input
+    //         do{
+    //             System.out.println("UserName:");
+    //             uname = console.readLine().trim();
+    //             if(uname.equals(""))
+    //                 System.out.println("UserName cannot be empty!");
+    //             else
+    //                 break;
+    //         }while(true);
+    //     //read password from user's input
+    //         do{
+                
+    //             System.out.println("password:");
+    //             char[] passwdChar = console.readPassword();
+    //             passwd = new String(passwdChar);
+    //             if(passwd.equals(""))
+    //                 System.out.println("Password cannot be empty!");
+    //             else
+    //                 break;
+    //         }while(true);
+            
+    //         try{
+    //             BufferedReader br  = new BufferedReader(new FileReader("data"));
+    //             StringBuilder sb = new StringBuilder();
+    //             String line;
+    //             //check whether read record from text file
+    //             while((line = br.readLine()) != null){
+    //                 String[] parts = line.split(",");
+    //                 tempUname = parts[1];
+    //                 tempPasswd = parts[2];
+    //             //if username and password are correct
+    //                 if(uname.equals(tempUname)&&passwd.equals(tempPasswd))
+    //                 {
+    //                     tempRole = parts[0];
+    //                     tempFname = parts[3];
+    //                     tempLname = parts[4];
+    //                     flag = false;
+    //                     if(tempRole.equals("Admin"))
+    //                     {
+    //                         //initial user1 as a administrator
+    //                         Administrator admin = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
+    //                         admin.help();
+    //                         admin.UILoop();
+    //                     }
+    //                     //if role of user is lecturer
+    //                     else if(tempRole.equals("Lecturer")){
+    //                     //initial user1 as a lecturer
+    //                         Lecturer lec = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
+    //                         lec.help();
+    //                         lec.UILoop();
+    //                     }
+
+    //                     //if role of user is marker
+    //                     else if(tempRole.equals("Marker"))
+    //                     //initial user1 as a marker
+    //                     {
+    //                         Marker mkr = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
+    //                         mkr.help();
+    //                         mkr.UILoop();
+    //                     } 
+    //                     else
+    //                         System.out.println("Data is wrong, please check data.txt");
+    //                 }
+    //             }
+    //         }catch(Exception e){
+    //                 System.out.println(e.getMessage());
+    //             }
+                
+    // }
+        login();
+}
+
+public static void login(){
+        System.out.println("****************************************************");
+        System.out.println("*                                                  *");
+        System.out.println("*                    MarkerApp                     *");
+        System.out.println("*                                                  *");
+        System.out.println("*                Xiangnan & Yafei                  *");
+        System.out.println("*                                                  *");
+        System.out.println("****************************************************");
         boolean flag = true;
         String tempRole;
         String tempFname;
         String tempLname;
-		while(flag){
+        String tempUname;
+        String tempPasswd;
+        
+        while(flag){
             
             Console console = System.console();
             String uname, passwd;
@@ -63,30 +157,21 @@ public class MarkerApp {
                 //check whether read record from text file
                 while((line = br.readLine()) != null){
                     String[] parts = line.split(",");
-                    String tempUname = parts[1];
-                    String tempPasswd = parts[2];
+                    tempUname = parts[1];
+                    tempPasswd = parts[2];
                 //if username and password are correct
                     if(uname.equals(tempUname)&&passwd.equals(tempPasswd))
                     {
-                        String tempRole = parts[0];
-                        String tempFname = parts[3];
-                        String tempLname = parts[4];
+                        tempRole = parts[0];
+                        tempFname = parts[3];
+                        tempLname = parts[4];
                         flag = false;
-                    }
-
-                }
-            }catch(Exception e)
-                {
-                    System.out.println(e.getMessage());
-                }
-                 //if role of user is administartor
-                if(tempRole.equals("Admin"))
-                    {
-                        //initial user1 as a administrator
-                        Administrator admin = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
-                        admin.help();
-                        admin.UILoop();
-
+                        if(tempRole.equals("Admin"))
+                        {
+                            //initial user1 as a administrator
+                            Administrator admin = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
+                            admin.help();
+                            admin.UILoop();
                         }
                         //if role of user is lecturer
                         else if(tempRole.equals("Lecturer")){
@@ -102,10 +187,16 @@ public class MarkerApp {
                         {
                             Marker mkr = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
                             mkr.help();
-                            lec.UILoop();
+                            mkr.UILoop();
                         } 
                         else
                             System.out.println("Data is wrong, please check data.txt");
+                    }
+                }
+            }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+                
     }
 }
 }
