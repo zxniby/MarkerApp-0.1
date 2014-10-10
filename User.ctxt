@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=User\ getUser1()
+comment0.text=\nTo\ get\ login\ user\n
+comment1.params=
+comment1.target=java.lang.String\ getUserName()
+comment1.text=\nTo\ get\ user\ name\n
+comment2.params=
+comment2.target=java.lang.String\ getPassword()
+comment2.text=\nTo\ get\ password\n
+comment3.params=uname\ passwd\ fname\ lname
+comment3.target=User(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.text=\nThe\ complete\ constructor\n@param\ uname\ This\ is\ the\ user\ name\n@param\ uname\ This\ is\ the\ password\n@param\ uname\ This\ is\ the\ first\ name\n@param\ uname\ This\ is\ the\ last\ name\n
+comment4.params=
+comment4.target=User()
+comment4.text=\nDefault\ constructor\n
+comment5.params=
+comment5.target=void\ help()
+comment5.text=\nThe\ help()\ method\ is\ rewrited\ in\ Administator,\ Lecturer,\ and\ Marker\ class,\ used\ to\ display\ help\ menu\n
+comment6.params=
+comment6.target=void\ create()
+comment6.text=\nThe\ create()\ method\ is\ rewrite\ in\ Administrator\ class,\ used\ to\ create\ unit\n
+comment7.params=
+comment7.target=boolean\ login()
+comment7.text=\nlogin()\ is\ used\ to\ log\ in\ MarkerApp,\ there\ are\ 3\ kinds\ of\ role\:</br>\ \nAdministrator,\ Lecturer,\ and\ Marker</br>\nFirst,\ user\ need\ to\ type\ user\ name,\ then\ type\ password,\ both\ of\ them\ cannot\ be\ empty.<br>\nComparing\ user\ name\ and\ password\ with\ records\ in\ data\ file,\ if\ they\ exsit\ in\ data\ file,<br>\nit\ indicates\ the\ user\ login\ information\ is\ correct,\ otherwise\ system\ will\ display\:\ username<br>\nor\ password\ is\ incorrect\!\n
+numComments=8

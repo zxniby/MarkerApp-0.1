@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ create()
+comment1.params=uname\ passwd\ fname\ lname
+comment1.target=Administrator(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=Administrator()
+comment3.params=
+comment3.target=void\ help()
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

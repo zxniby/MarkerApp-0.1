@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=uname\ passwd\ fname\ lname
+comment0.target=Lecturer(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=
+comment1.target=Lecturer()
+comment2.params=
+comment2.target=void\ help()
+numComments=3
