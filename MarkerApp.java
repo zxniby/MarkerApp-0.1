@@ -21,27 +21,92 @@ public class MarkerApp {
      * However, please ensure that each function performs correctly with appropriate
      * input parameters.
      */
-
-    
-
     public static void main(String args[]) {
         //MarkerApp markerApp = new MarkerApp();
         
-		User tempuser = new User();
-		//Console console = System.console();
-		boolean flag;
-		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		while(true){
-			if(tempuser.login())
-				break;
-			else
-				System.out.println("username or password is incorrect,please try again:");
-		}
-		User user = tempuser.getUser1();
-        user.help();
-        user.UILoop();
-		
-        
-        //markerApp.UILoop();
+		// User tempuser = new User();
+		// boolean flag;
+
+        boolean flag = true;
+        String tempRole;
+        String tempFname;
+        String tempLname;
+		while(flag){
+            
+            Console console = System.console();
+            String uname, passwd;
+        //read username from user's input
+            do{
+                System.out.println("UserName:");
+                uname = console.readLine().trim();
+                if(uname.equals(""))
+                    System.out.println("UserName cannot be empty!");
+                else
+                    break;
+            }while(true);
+        //read password from user's input
+            do{
+                
+                System.out.println("password:");
+                char[] passwdChar = console.readPassword();
+                passwd = new String(passwdChar);
+                if(passwd.equals(""))
+                    System.out.println("Password cannot be empty!");
+                else
+                    break;
+            }while(true);
+            
+            try{
+                BufferedReader br  = new BufferedReader(new FileReader("data"));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                //check whether read record from text file
+                while((line = br.readLine()) != null){
+                    String[] parts = line.split(",");
+                    String tempUname = parts[1];
+                    String tempPasswd = parts[2];
+                //if username and password are correct
+                    if(uname.equals(tempUname)&&passwd.equals(tempPasswd))
+                    {
+                        String tempRole = parts[0];
+                        String tempFname = parts[3];
+                        String tempLname = parts[4];
+                        flag = false;
+                    }
+
+                }
+            }catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
+                 //if role of user is administartor
+                if(tempRole.equals("Admin"))
+                    {
+                        //initial user1 as a administrator
+                        Administrator admin = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
+                        admin.help();
+                        admin.UILoop();
+
+                        }
+                        //if role of user is lecturer
+                        else if(tempRole.equals("Lecturer")){
+                        //initial user1 as a lecturer
+                            Lecturer lec = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
+                            lec.help();
+                            lec.UILoop();
+                        }
+
+                        //if role of user is marker
+                        else if(tempRole.equals("Marker"))
+                        //initial user1 as a marker
+                        {
+                            Marker mkr = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
+                            mkr.help();
+                            lec.UILoop();
+                        } 
+                        else
+                            System.out.println("Data is wrong, please check data.txt");
     }
 }
+}
+

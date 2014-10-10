@@ -94,73 +94,7 @@ public class User{
 	*/
 public boolean login()
 	{
-		boolean flag = false;
-		Console console = System.console();
-		String uname, passwd;
-		//read username from user's input
-			do{
-				System.out.println("UserName:");
-				uname = console.readLine().trim();
-				if(uname.equals(""))
-					System.out.println("UserName cannot be empty!");
-				else
-					break;
-			}while(true);
-		//read password from user's input
-			do{
-				
-				System.out.println("password:");
-				char[] passwdChar = console.readPassword();
-				passwd = new String(passwdChar);
-				if(passwd.equals(""))
-					System.out.println("Password cannot be empty!");
-				else
-					break;
-			}while(true);
-			
-			try{
-				BufferedReader br  = new BufferedReader(new FileReader("data"));
-				StringBuilder sb = new StringBuilder();
-				String line;
-				//check whether read record from text file
-				while((line = br.readLine()) != null){
-					String[] parts = line.split(",");
-					String tempUname = parts[1];
-					String tempPasswd = parts[2];
-				//if username and password are correct
-					if(uname.equals(tempUname)&&passwd.equals(tempPasswd))
-					{
-						String tempRole = parts[0];
-						String tempFname = parts[3];
-						String tempLname = parts[4];
-						flag = true;
-						//if role of user is administartor
-						if(tempRole.equals("Admin")){
-						//initial user1 as a administrator
-							user1 = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
-						}
-						//if role of user is lecturer
-						else if(tempRole.equals("Lecturer")){
-						//initial user1 as a lecturer
-							user1 = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
-						}
-
-						//if role of user is marker
-						else if(tempRole.equals("Marker"))
-						//initial user1 as a marker
-							user1 = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
-						else
-						//if the role of the person is none of administrator, lecturer, and marker, then return false
-							flag = false;
-						break;
-					}
-
-				}
-			}catch(Exception e)
-				{
-					System.out.println(e.getMessage());
-				}
-				return flag;
+		
 		}
 
 protected boolean quitFn() {

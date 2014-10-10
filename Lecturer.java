@@ -6,7 +6,7 @@ import java.io.Console;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Lecturer extends Marker{
+public class Lecturer extends User{
 
 
 	public Lecturer(String uname, String passwd, String fname, String lname){
