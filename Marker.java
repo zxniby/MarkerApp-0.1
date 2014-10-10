@@ -23,33 +23,85 @@ public class Marker extends User{
 	public Marker(){}
 
 	public void help(){
-		System.out.println("The abbrs for all operation:");
-		System.out.println("m: mark submission");
-		System.out.println("o: logout");
-		System.out.println("please input abbr of operation: ");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		try{
-			while(true)
-			{	
-				System.out.println("Input q to exit: ");
-				String temp = br.readLine().trim();
-				if(temp.equals("q"))
-					break;
-			}
-		}catch(Exception e){
-			System.err.println(e.getMessage());
-		}
+        System.out.println("c: create a marking report!");
+        System.out.println("s: save the current marking report");
+        System.out.println("m: invork the marking process");
+        System.out.println("p: print the current satus of marking");
+        System.out.println("r: report the current marking status into a file");
+        System.out.println("o: logout out");
+        System.out.println("h: help");
+        System.out.println("please input abbr of operation: ");
 
 	}
 
-	private boolean markFn (String[] arguments) {
+    protected void UILoop() {
+
+        String line = "";
+        while (true) {
+            // Show a message to a user
+            System.out.println("Enter Command:");
+
+            // The system ask a user a commend
+            line = new Scanner(System.in).nextLine().trim();
+
+            // If the command is 'enter' or nothing, we do nothing.
+            if (line.equalsIgnoreCase("")) continue;
+
+            String commandList[] = line.split(" ");
+            char command = commandList[0].charAt(0);
+            String arguments[] = new String[commandList.length-1];
+            System.arraycopy(commandList, 1, arguments, 0, arguments.length);
+
+            boolean result = false;
+            switch (command) {
+                case 'q':
+                    // exit the program
+                    result = quitFn();
+                    break;
+                case 'c':
+                    // create a marking report
+                    createFn(arguments);
+                    break;
+                case 's':
+                    // save the current marking report
+                    saveFn(arguments);
+                    break;
+                case 'l':
+                    // load the specified marking report
+                    loadFn(arguments);
+                    break;
+                case 'm':
+                    // invork the marking process
+                    markFn(arguments);
+                    break;
+                case 'p':
+                    // print the current status of marking
+                    statusFn(arguments);
+                    break;
+                case 'r':
+                    // report the current marking status into a file
+                    reportFn(arguments);
+                    break;
+                case 'h':
+                     help();
+                     break;
+                case 'o':
+                      logout();
+                default:
+                    System.err.println(command + " is not a valid command! Try again!");
+                    break;
+            }
+            if (result) break;
+        }
+    }
+
+	protected boolean markFn (String[] arguments) {
         if (assignment != null) assignment.markUI();
         else System.out.println("You must create or load an assignment first!");
         return false;
     }
 
-    private boolean saveFn (String arguments[]) {
+    protected boolean saveFn (String arguments[]) {
         String name = arguments[0];
 
         try {
@@ -66,7 +118,7 @@ public class Marker extends User{
         return false;
     }
 
-    private boolean loadFn (String arguments[]) {
+    protected boolean loadFn (String arguments[]) {
         String name = arguments[0];
 
         try {
@@ -81,7 +133,7 @@ public class Marker extends User{
         return false;
     }
 
-    private boolean statusFn (String arguments[]) {
+    protected boolean statusFn (String arguments[]) {
         if (assignment != null)
             assignment.printStatus(new PrintStream(System.out));
         else
@@ -90,12 +142,29 @@ public class Marker extends User{
     }
     
 
-    private boolean reportFn (String arguments[]) {
+    protected boolean reportFn (String arguments[]) {
         if (assignment != null)
             assignment.makeReports(arguments[0]);
         else
             System.out.println("Please create or load an assignment file first!");
         return false;
     }
+
+    protected boolean createFn(String[] arguments) {
+        if (arguments.length != 2) {
+            System.out.print("You must specify a spec file and a student list");
+            return false;
+        } else {
+            String assignFile = arguments[0];
+            String studFile = arguments[1];
+            assignment = new Assignment(assignFile, studFile);
+            return false;
+        }
+    }
+
+    protected boolean quitFn() {
+    System.out.println("Quitting.  Hope you saved the assignment first.");
+    return true;
+}
 
 }

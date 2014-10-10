@@ -1,12 +1,8 @@
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
-import java.io.Console;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.Scanner;
+import java.io.*;
 
-public class Lecturer extends User{
+public class Lecturer extends Marker{
 
 
 	public Lecturer(String uname, String passwd, String fname, String lname){
@@ -18,43 +14,75 @@ public class Lecturer extends User{
 	}
 	public Lecturer(){}
 	public void help(){
-		System.out.println("The abbrs for all operation:");
-		System.out.println("c: create assingment");
-		System.out.println("a: assign marker to assignment");
-		System.out.println("m: mark submission");
-		System.out.println("w: set withheld");
-		System.out.println("l: clean withheld");
-		System.out.println("r: get unit summary report");
-		System.out.println("o: logout");
+		System.out.println("c: create a marking report!");
+		System.out.println("s: save the current marking report");
+		System.out.println("m: invork the marking process");
+		System.out.println("p: print the current satus of marking");
+		System.out.println("r: report the current marking status into a file");
+		System.out.println("o: logout out");
+		System.out.println("h: help");
 		System.out.println("please input abbr of operation: ");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		try{
-			while(true)
-			{	
-				System.out.println("Input q to exit: ");
-				String temp = br.readLine().trim();
-				if(temp.equals("q"))
-					break;
-			}
-		}catch(Exception e){
-			System.err.println(e.getMessage());
-		}
-
 
 	}
 
-    private boolean createFn(String[] arguments) {
-        if (arguments.length != 2) {
-            System.out.print("You must specify a spec file and a student list");
-            return false;
-        } else {
-            String assignFile = arguments[0];
-            String studFile = arguments[1];
-            assignment = new Assignment(assignFile, studFile);
-            return false;
+	    protected void UILoop() {
+
+        String line = "";
+        while (true) {
+            // Show a message to a user
+            System.out.println("Enter Command:");
+
+            // The system ask a user a commend
+            line = new Scanner(System.in).nextLine().trim();
+
+            // If the command is 'enter' or nothing, we do nothing.
+            if (line.equalsIgnoreCase("")) continue;
+
+            String commandList[] = line.split(" ");
+            char command = commandList[0].charAt(0);
+            String arguments[] = new String[commandList.length-1];
+            System.arraycopy(commandList, 1, arguments, 0, arguments.length);
+
+            boolean result = false;
+            switch (command) {
+                case 'c':
+                    // create a marking report
+                    createFn(arguments);
+                    break;
+                case 's':
+                    // save the current marking report
+                    saveFn(arguments);
+                    break;
+                case 'l':
+                    // load the specified marking report
+                    loadFn(arguments);
+                    break;
+                case 'm':
+                    // invork the marking process
+                    markFn(arguments);
+                    break;
+                case 'p':
+                    // print the current status of marking
+                    statusFn(arguments);
+                    break;
+                case 'r':
+                    // report the current marking status into a file
+                    reportFn(arguments);
+                    break;
+                case 'h':
+                     help();
+                     break;
+                case 'o':
+                      logout();
+                default:
+                    System.err.println(command + " is not a valid command! Try again!");
+                    break;
+            }
+            if (result) break;
         }
     }
+
+
 
 
 }

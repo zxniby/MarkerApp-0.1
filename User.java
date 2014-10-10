@@ -92,131 +92,121 @@ public class User{
 	*it indicates the user login information is correct, otherwise system will display: username<br>
 	*or password is incorrect!
 	*/
-public boolean login()
-	{
-		
-		}
+// public boolean login()
+// 	{
 
-protected boolean quitFn() {
-    System.out.println("Quitting.  Hope you saved the assignment first.");
-    return true;
-}
+//     }
 
-protected boolean markFn (String[] arguments) {
-        // if (assignment != null) assignment.markUI();
-        // else System.out.println("You must create or load an assignment first!");
-        return false;
-    }
+// protected boolean quitFn() {
+//     System.out.println("Quitting.  Hope you saved the assignment first.");
+//     return true;
+// }
 
-protected boolean saveFn (String arguments[]) {
-        // String name = arguments[0];
+// protected boolean markFn (String[] arguments) {
+//         if (assignment != null) assignment.markUI();
+//         else System.out.println("You must create or load an assignment first!");
+//         return false;
+//     }
 
-        // try {
-        //     FileOutputStream fout = new FileOutputStream(name, true);
-        //     ObjectOutputStream oos = new ObjectOutputStream(fout);
-        //     oos.writeObject(assignment);
-        //     oos.close();
-        //     fout.close();
+// protected boolean saveFn (String arguments[]) {
+//         String name = arguments[0];
 
-        //     System.out.println(name + " has been successfully saved!");
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        return false;
-    }
+//         try {
+//             FileOutputStream fout = new FileOutputStream(name, true);
+//             ObjectOutputStream oos = new ObjectOutputStream(fout);
+//             oos.writeObject(assignment);
+//             oos.close();
+//             fout.close();
 
-    protected boolean loadFn (String arguments[]) {
-        // String name = arguments[0];
+//             System.out.println(name + " has been successfully saved!");
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//         return false;
+//     }
 
-        // try {
-        //     FileInputStream fin = new FileInputStream(name);
-        //     ObjectInputStream  ois = new ObjectInputStream(fin);
-        //     assignment = (Assignment) ois.readObject();
-        //     ois.close();
-        //     fin.close();
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-         return false;
-    }
+//     protected boolean loadFn (String arguments[]) {
+//         String name = arguments[0];
 
-    protected boolean statusFn (String arguments[]) {
-        // if (assignment != null)
-        //     assignment.printStatus(new PrintStream(System.out));
-        // else
-        //     System.out.println("Please create or load an assignment file first!");
-         return false;
-    }
+//         try {
+//             FileInputStream fin = new FileInputStream(name);
+//             ObjectInputStream  ois = new ObjectInputStream(fin);
+//             assignment = (Assignment) ois.readObject();
+//             ois.close();
+//             fin.close();
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//          return false;
+//     }
 
-    protected boolean reportFn (String arguments[]) {
-        // if (assignment != null)
-        //     assignment.makeReports(arguments[0]);
-        // else
-        //     System.out.println("Please create or load an assignment file first!");
-         return false;
-    }
+//     protected boolean statusFn (String arguments[]) {
+//         if (assignment != null)
+//             assignment.printStatus(new PrintStream(System.out));
+//         else
+//             System.out.println("Please create or load an assignment file first!");
+//          return false;
+//     }
 
 
+    protected void UILoop() {}
 
+//         // String line = "";
+//         // while (true) {
+//         //     // Show a message to a user
+//         //     System.out.println("Enter Command:");
 
-        protected void UILoop() {
+//         //     // The system ask a user a commend
+//         //     line = new Scanner(System.in).nextLine().trim();
 
-        // String line = "";
-        // while (true) {
-        //     // Show a message to a user
-        //     System.out.println("Enter Command:");
+//         //     // If the command is 'enter' or nothing, we do nothing.
+//         //     if (line.equalsIgnoreCase("")) continue;
 
-        //     // The system ask a user a commend
-        //     line = new Scanner(System.in).nextLine().trim();
+//         //     String commandList[] = line.split(" ");
+//         //     char command = commandList[0].charAt(0);
+//         //     String arguments[] = new String[commandList.length-1];
+//         //     System.arraycopy(commandList, 1, arguments, 0, arguments.length);
 
-        //     // If the command is 'enter' or nothing, we do nothing.
-        //     if (line.equalsIgnoreCase("")) continue;
-
-        //     String commandList[] = line.split(" ");
-        //     char command = commandList[0].charAt(0);
-        //     String arguments[] = new String[commandList.length-1];
-        //     System.arraycopy(commandList, 1, arguments, 0, arguments.length);
-
-        //     boolean result = false;
-        //     switch (command) {
-        //         case 'q':
-        //             // exit the program
-        //             result = quitFn();
-        //             break;
-        //         case 'c':
-        //             // create a marking report
-        //             createFn(arguments);
-        //             break;
-        //         case 's':
-        //             // save the current marking report
-        //             saveFn(arguments);
-        //             break;
-        //         case 'l':
-        //             // load the specified marking report
-        //             loadFn(arguments);
-        //             break;
-        //         case 'm':
-        //             // invork the marking process
-        //             markFn(arguments);
-        //             break;
-        //         case 'p':
-        //             // print the current status of marking
-        //             statusFn(arguments);
-        //             break;
-        //         case 'r':
-        //             // report the current marking status into a file
-        //             reportFn(arguments);
-        //             break;
-        //         // case 'h':
-        //         //     help();
-        //         //     break;
-        //         default:
-        //             System.err.println(command + " is not a valid command! Try again!");
-        //             break;
-        //     }
-        //     if (result) break;
-        // }
-    }
+//         //     boolean result = false;
+//         //     switch (command) {
+//         //         case 'q':
+//         //             // exit the program
+//         //             result = quitFn();
+//         //             break;
+//         //         case 'c':
+//         //             // create a marking report
+//         //             createFn(arguments);
+//         //             break;
+//         //         case 's':
+//         //             // save the current marking report
+//         //             saveFn(arguments);
+//         //             break;
+//         //         case 'l':
+//         //             // load the specified marking report
+//         //             loadFn(arguments);
+//         //             break;
+//         //         case 'm':
+//         //             // invork the marking process
+//         //             markFn(arguments);
+//         //             break;
+//         //         case 'p':
+//         //             // print the current status of marking
+//         //             statusFn(arguments);
+//         //             break;
+//         //         case 'r':
+//         //             // report the current marking status into a file
+//         //             reportFn(arguments);
+//         //             break;
+//         //         // case 'h':
+//         //         //     help();
+//         //         //     break;
+//         //         default:
+//         //             System.err.println(command + " is not a valid command! Try again!");
+//         //             break;
+//         //     }
+//         //     if (result) break;
+//         // }
+//     }
 
     public void logout(){
     	System.out.println("Logout successfully!");
