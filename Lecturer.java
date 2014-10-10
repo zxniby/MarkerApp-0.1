@@ -6,7 +6,7 @@ import java.io.Console;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class Lecturer extends User{
+public class Lecturer extends Marker{
 
 
 	public Lecturer(String uname, String passwd, String fname, String lname){
@@ -41,7 +41,20 @@ public class Lecturer extends User{
 			System.err.println(e.getMessage());
 		}
 
+
 	}
+
+	    private boolean createFn(String[] arguments) {
+        if (arguments.length != 2) {
+            System.out.print("You must specify a spec file and a student list");
+            return false;
+        } else {
+            String assignFile = arguments[0];
+            String studFile = arguments[1];
+            assignment = new Assignment(assignFile, studFile);
+            return false;
+        }
+    }
 
 
 }
