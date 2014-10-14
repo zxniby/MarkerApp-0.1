@@ -47,4 +47,5 @@ public class Student implements Serializable {
         Student s = new Student("Fred", "12345678", "fred.nurk@monash.edu");
         System.out.println(s.getName() + ", " + s.getId() + ", " + s.getEmail());
     }
+    
 }

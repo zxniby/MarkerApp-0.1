@@ -61,13 +61,15 @@ public class Submission implements Serializable {
     }
 
     public void mark() {
-        Iterator it = critmarks.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            CriterionMark c = (CriterionMark) pair.getValue();
-            c.getMark();
+        if (status != SubmissionStatusEnum.WITHHELD) {
+            Iterator it = critmarks.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry) it.next();
+                CriterionMark c = (CriterionMark) pair.getValue();
+                c.getMark();
+            }
+            status = SubmissionStatusEnum.MARKED;
         }
-        status = SubmissionStatusEnum.MARKED;
     }
 
     public void report (PrintStream printStream) {
@@ -88,6 +90,16 @@ public class Submission implements Serializable {
         }
         printFooter(totalMarks, maxMarks, printStream);
 
+    }
+    
+    
+    public boolean setWithheld() {
+        if (status == SubmissionStatusEnum.MARKED || status == SubmissionStatusEnum.WITHHELD)
+            return false;
+        else {
+            status = SubmissionStatusEnum.WITHHELD;
+            return true;
+        }
     }
 
     private void printHeader(PrintStream printStream) {

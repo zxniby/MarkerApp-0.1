@@ -1,155 +1,94 @@
 import java.util.List;
 import java.io.*;
 import java.util.Scanner;
-/**
-*<h1><b>User Class<b></h1><br>
-*<h3>User class is supclass of Administrator, Lecturer, and Marker.</h3>
-*/
+
 
 public class User{
-	protected Assignment assignment;
-	/**
-	*The role of User
-	*/
-	protected String role;
-	/**
-	*The userName of User
-	*/
-	protected String userName;
-		/**
-	*The password of User
-	*/
-	protected String password;
-		/**
-	*The first name of User
-	*/
-	protected String firstName;
-		/**
-	*The last name of User
-	*/
-	protected String lastName;
-		/**
-	*The login user
-	*/
-	private User user1;
-
-	/**
-	*To get login user
-	*/
-	public User getUser1(){
-		return user1;
-	}
-	/**
-	*To get user name
-	*/
-	public String getUserName(){
-		return userName;
-	}
-		/**
-	*To get password
-	*/
-	public String getPassword(){
-		return password;
-	}
-
-		/**
-	*The complete constructor
-	*@param uname This is the user name
-	*@param uname This is the password
-	*@param uname This is the first name
-	*@param uname This is the last name
-	*/
-	public User(String uname, String passwd, String fname, String lname)
-	{
-		userName = uname;
-		password = passwd;
-		firstName = fname;
-		lastName = lname;
-	}
-
-		/**
-	*Default constructor
-	*/
-	public User(){}
-
-	/**
-	*The help() method is rewrited in Administator, Lecturer, and Marker class, used to display help menu
-	*/
-	public void help(){
-	};
-
-	/**
-	*The create() method is rewrite in Administrator class, used to create unit
-	*/
-	public void create(){
-
-	}
-	/**
-	*login() is used to log in MarkerApp, there are 3 kinds of role:</br> 
-	*Administrator, Lecturer, and Marker</br>
-	*First, user need to type user name, then type password, both of them cannot be empty.<br>
-	*Comparing user name and password with records in data file, if they exsit in data file,<br>
-	*it indicates the user login information is correct, otherwise system will display: username<br>
-	*or password is incorrect!
-	*/
-// public boolean login()
-// 	{
-
-//     }
-
-// protected boolean quitFn() {
-//     System.out.println("Quitting.  Hope you saved the assignment first.");
-//     return true;
-// }
-
-// protected boolean markFn (String[] arguments) {
-//         if (assignment != null) assignment.markUI();
-//         else System.out.println("You must create or load an assignment first!");
-//         return false;
-//     }
-
-// protected boolean saveFn (String arguments[]) {
-//         String name = arguments[0];
-
-//         try {
-//             FileOutputStream fout = new FileOutputStream(name, true);
-//             ObjectOutputStream oos = new ObjectOutputStream(fout);
-//             oos.writeObject(assignment);
-//             oos.close();
-//             fout.close();
-
-//             System.out.println(name + " has been successfully saved!");
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         }
-//         return false;
-//     }
-
-//     protected boolean loadFn (String arguments[]) {
-//         String name = arguments[0];
-
-//         try {
-//             FileInputStream fin = new FileInputStream(name);
-//             ObjectInputStream  ois = new ObjectInputStream(fin);
-//             assignment = (Assignment) ois.readObject();
-//             ois.close();
-//             fin.close();
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         }
-//          return false;
-//     }
-
-//     protected boolean statusFn (String arguments[]) {
-//         if (assignment != null)
-//             assignment.printStatus(new PrintStream(System.out));
-//         else
-//             System.out.println("Please create or load an assignment file first!");
-//          return false;
-//     }
+    /**
+    *The role of User
+    */
+    protected String role;
+    /**
+    *The userName of User
+    */
+    protected String userName;
+        /**
+    *The password of User
+    */
+    protected String password;
+        /**
+    *The first name of User
+    */
+    protected String firstName;
+        /**
+    *The last name of User
+    */
+    protected String lastName;
+        /**
 
 
-    protected void UILoop() {}
+
+    /**
+    *To get user name
+    */
+    public String getUserName(){
+        return userName;
+    }
+        /**
+    *To get password
+    */
+    public String getPassword(){
+        return password;
+    }
+    
+    
+    
+    public User()
+    {
+        userName = "";
+        password = "";
+        firstName = "";
+        lastName = "";
+    }
+
+        /**
+    *The complete constructor
+    *@param uname This is the user name
+    *@param uname This is the password
+    *@param uname This is the first name
+    *@param uname This is the last name
+    */
+
+    
+    
+    
+    public User(String uname, String passwd, String fname, String lname)
+    {
+        userName = uname;
+        password = passwd;
+        firstName = fname;
+        lastName = lname;
+    }
+
+        /**
+    *Default constructor
+    */
+
+    /**
+    *The help() method is rewrited in Administator, Lecturer, and Marker class, used to display help menu
+    */
+    public void help(){
+    };
+
+    /**
+    *The create() method is rewrite in Administrator class, used to create unit
+    */
+    public void create(){
+
+    }
+
+
+    private void UILoop() {}
 
 //         // String line = "";
 //         // while (true) {
@@ -208,9 +147,113 @@ public class User{
 //         // }
 //     }
 
+    /**
+     * logout method
+     */
+    
     public void logout(){
-    	System.out.println("Logout successfully!");
-        MarkerApp.login();
+        System.out.println("Logout successfully!");
+        login();
+    }
+    
+    
+    /**
+    *login() is used to log in MarkerApp, there are 3 kinds of role:
+    *Administrator, Lecturer, and Marker
+    *First, user need to type user name, then type password, both of them cannot be empty.
+    *Comparing user name and password with records in data file, if they exsit in data file,
+    *it indicates the user login information is correct, otherwise system will display: username
+    *or password is incorrect!
+    */
+    
+    public void login(){
+
+        boolean flag = true;
+        
+        
+        String tempRole;
+        String tempFname;
+        String tempLname;
+        String tempUname;
+        String tempPasswd;
+        
+        while(flag){
+            String uname = "";
+            String passwd = "";
+            //read username from user's input
+            do{
+                System.out.println("UserName:");
+                
+                uname = new Scanner(System.in).nextLine();
+                if(uname.equals(""))
+                    System.out.println("UserName cannot be empty!");
+                else{
+                    userName = uname;
+                    break;
+                }
+            }while(true);
+            //read password from user's input
+            do{
+                
+                System.out.println("password:");
+                passwd =  new Scanner(System.in).nextLine();
+                if(passwd.equals(""))
+                    System.out.println("Password cannot be empty!");
+                else
+                    break;
+            }while(true);
+                           try{
+                BufferedReader br  = new BufferedReader(new FileReader("data"));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                //check whether read record from text file
+                while((line = br.readLine()) != null){
+                    String[] parts = line.split(",");
+                    tempUname = parts[1];
+                    tempPasswd = parts[2];
+                //if username and password are correct
+                    if(uname.equals(tempUname)&&passwd.equals(tempPasswd))
+                    {
+                        tempRole = parts[0];
+                        tempFname = parts[3];
+                        tempLname = parts[4];
+                        flag = false;
+                        if(tempRole.equals("Admin"))
+                        {
+                            //initial user1 as a administrator
+                            Administrator admin = new Administrator(tempUname, tempPasswd, tempFname, tempLname);
+                            admin.help();
+                            admin.adminUILoop();
+                        }
+                        //if role of user is lecturer
+                        else if(tempRole.equals("Lecturer")){
+                        //initial user1 as a lecturer
+                            Lecturer lec = new Lecturer(tempUname, tempPasswd, tempFname, tempLname);
+                            lec.help();
+                            lec.lecturerUILoop();
+                        }
+
+                        //if role of user is marker
+                        else if(tempRole.equals("Marker"))
+                        //initial user1 as a marker
+                        {
+                            Marker mkr = new Marker(tempUname, tempPasswd, tempFname, tempLname);
+                            mkr.help();
+                            mkr.markerUILoop();
+                        } 
+                        else
+                            System.out.println("Data is wrong, please check data.txt");
+                    }
+                }
+            }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+        }
+        
+        
+    
+    
+
     }
 
 }

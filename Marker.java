@@ -1,40 +1,28 @@
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.List;
-import java.io.Console;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
+import java.util.*;
+
+
+
 import java.io.*;
-import java.util.Scanner;
+
+
 
 public class Marker extends User{
-	// private String UserName;
-	// private String Password;
-	public Marker(String uname, String passwd, String fname, String lname){
-		userName = uname;
-		password = passwd;
-		firstName = fname;
-		lastName = lname;
-		
-	}
-	public Marker(){}
 
-	public void help(){
-        System.out.println("c: create a marking report!");
-        System.out.println("s: save the current marking report");
-        System.out.println("m: invork the marking process");
-        System.out.println("p: print the current satus of marking");
-        System.out.println("r: report the current marking status into a file");
-        System.out.println("o: logout out");
-        System.out.println("h: help");
-        System.out.println("please input abbr of operation: ");
+    protected Assignment assignment;  
+    // private String UserName;
+    // private String Password;
+    public Marker(){}
+    public Marker(String uname, String passwd, String fname, String lname){
+        userName = uname;
+        password = passwd;
+        firstName = fname;
+        lastName = lname;
+        
+    }
+    
+    public void markerUILoop() {
 
-	}
-
-    protected void UILoop() {
 
         String line = "";
         while (true) {
@@ -57,10 +45,6 @@ public class Marker extends User{
                 case 'q':
                     // exit the program
                     result = quitFn();
-                    break;
-                case 'c':
-                    // create a marking report
-                    createFn(arguments);
                     break;
                 case 's':
                     // save the current marking report
@@ -87,6 +71,10 @@ public class Marker extends User{
                      break;
                 case 'o':
                       logout();
+                case 'w':
+                    // set submission as withheld
+                    setWithheldFn();
+                    break;
                 default:
                     System.err.println(command + " is not a valid command! Try again!");
                     break;
@@ -95,28 +83,7 @@ public class Marker extends User{
         }
     }
 
-	protected boolean markFn (String[] arguments) {
-        if (assignment != null) assignment.markUI();
-        else System.out.println("You must create or load an assignment first!");
-        return false;
-    }
-
-    protected boolean saveFn (String arguments[]) {
-        String name = arguments[0];
-
-        try {
-            FileOutputStream fout = new FileOutputStream(name, true);
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(assignment);
-            oos.close();
-            fout.close();
-
-            System.out.println(name + " has been successfully saved!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+    
 
     protected boolean loadFn (String arguments[]) {
         String name = arguments[0];
@@ -133,12 +100,44 @@ public class Marker extends User{
         return false;
     }
 
+    protected boolean markFn (String[] arguments) {
+        if (assignment != null) assignment.markUI();
+        else System.out.println("You must create or load an assignment first!");
+        return false;
+    }
+
+    protected void saveFn (String arguments[]) {
+        String name = arguments[0];
+        try {
+            FileOutputStream fout = new FileOutputStream(name, true);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(assignment);
+            oos.close();
+            fout.close();
+            System.out.println(name + " has been successfully saved!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     protected boolean statusFn (String arguments[]) {
         if (assignment != null)
             assignment.printStatus(new PrintStream(System.out));
         else
             System.out.println("Please create or load an assignment file first!");
         return false;
+    }
+    
+    
+    /**setWithheldFn method is for instructing users to finish set withheld operation*/
+
+    protected void setWithheldFn() {
+        if (assignment != null)
+            assignment.setWithheldUI();
+        else
+            System.out.println("Please create or load an assignment file first!");
+        
     }
     
 
@@ -150,21 +149,23 @@ public class Marker extends User{
         return false;
     }
 
-    protected boolean createFn(String[] arguments) {
-        if (arguments.length != 2) {
-            System.out.print("You must specify a spec file and a student list");
-            return false;
-        } else {
-            String assignFile = arguments[0];
-            String studFile = arguments[1];
-            assignment = new Assignment(assignFile, studFile);
-            return false;
-        }
-    }
 
     protected boolean quitFn() {
     System.out.println("Quitting.  Hope you saved the assignment first.");
     return true;
-}
+    }
+    
+    
+    public void help(){
+        System.out.println("s: save the current marking report");
+        System.out.println("m: invork the marking process");
+        System.out.println("p: print the current satus of marking");
+        System.out.println("r: report the current marking status into a file");
+        System.out.println("o: logout out");
+        System.out.println("h: help");
+        System.out.println("w: withheld");
+        System.out.println("please input abbr of operation: ");
+
+    }
 
 }

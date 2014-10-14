@@ -12,7 +12,7 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class Assignment implements Serializable {
-
+    private String assignmentTitle;
     private AssignmentSpec assignmentSpec;
     private HashMap<String, Submission> submissions;
 
@@ -43,6 +43,18 @@ public class Assignment implements Serializable {
             System.err.println("The assignment of '" + sId + "' does not exist!");
         }
     }
+    
+    
+    /**set the assignment whose student id is specified as withheld
+    @param sID a String: the student id of the assignment which is going to be set withheld
+    */
+    public void setAssignmentWithheld (String sId) {
+        if (submissions.containsKey(sId)) {
+            submissions.get(sId).setWithheld();;
+        } else {
+            System.err.println("The assignment of '" + sId + "' does not exist!");
+        }
+    }
 
     public void printStatus (PrintStream printStream) {
         Iterator it = submissions.entrySet().iterator();
@@ -65,6 +77,19 @@ public class Assignment implements Serializable {
             markAssignment(sId);
         }
     }
+    
+    /**setWithheldUI method is for finishing setting withheld operation*/
+    public void setWithheldUI() {
+        String id = "1";
+        while (true) {
+            System.out.println("Enter student id (0 to end):");
+            String sId = new Scanner(System.in).nextLine().trim();
+            if (sId.equalsIgnoreCase("0")) {
+                break;
+            }
+            setAssignmentWithheld(sId);
+        }
+    }
 
     public void makeReports(String path) {
         try {
@@ -84,6 +109,10 @@ public class Assignment implements Serializable {
             e.printStackTrace();
         }
     }
+    
+    public void printTitle() {
+        System.out.println(assignmentTitle);
+    }
 
     public static void main(String args[]) {
         String dir = System.getProperty("user.dir");
@@ -95,4 +124,7 @@ public class Assignment implements Serializable {
         assignment.markUI();
         assignment.makeReports("./reports");
     }
+    
+    
+    
 }

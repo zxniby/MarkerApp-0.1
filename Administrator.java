@@ -77,7 +77,7 @@ public class Administrator extends User{
 		admin.help();
 	}
 
-	protected void UILoop() {
+	protected void adminUILoop() {
 		Administrator tempAdmin = new Administrator();
         String line = "";
         while (true) {
@@ -101,16 +101,16 @@ public class Administrator extends User{
             switch (command) {
                 case 'q':
                     // exit the program
-                    result = quitFn();
+                    //result = quitFn();
                     break;
                 case 'o':
-                	tempAdmin.logout();
+                	//tempAdmin.logout();
                 	break;
                 case 'h':
-                    tempAdmin.help();
+                    //tempAdmin.help();
                     break;
                 default:
-                    System.err.println(command + " is not a valid command! Try again!");
+                    //System.err.println(command + " is not a valid command! Try again!");
                     break;
             }
             if (result) break;

@@ -5,27 +5,29 @@ import java.io.*;
 public class Lecturer extends Marker{
 
 
-	public Lecturer(String uname, String passwd, String fname, String lname){
-		userName = uname;
-		password = passwd;
-		firstName = fname;
-		lastName = lname;
-		
-	}
-	public Lecturer(){}
-	public void help(){
-		System.out.println("c: create a marking report!");
-		System.out.println("s: save the current marking report");
-		System.out.println("m: invork the marking process");
-		System.out.println("p: print the current satus of marking");
-		System.out.println("r: report the current marking status into a file");
-		System.out.println("o: logout out");
-		System.out.println("h: help");
-		System.out.println("please input abbr of operation: ");
+    public Lecturer(String uname, String passwd, String fname, String lname){
+        this.userName = uname;
+        this.password = passwd;
+        this.firstName = fname;
+        this.lastName = lname;
+        
+    }
+    public Lecturer(){}
+    public void help(){
+        System.out.println("c: create an Assignment!");
+        System.out.println("s: save the current marking report");
+        System.out.println("m: invork the marking process");
+        System.out.println("p: print the current satus of marking");
+        System.out.println("r: report the current marking status into a file");
+        System.out.println("o: logout out");
+        System.out.println("h: help");
+        System.out.println("w: withheld");
+        System.out.println("please input abbr of operation: ");
 
-	}
+    }
 
-	    protected void UILoop() {
+        protected void lecturerUILoop() {
+
 
         String line = "";
         while (true) {
@@ -45,6 +47,10 @@ public class Lecturer extends Marker{
 
             boolean result = false;
             switch (command) {
+                case 'q':
+                    // exit the program
+                    result = quitFn();
+                    break;
                 case 'c':
                     // create a marking report
                     createFn(arguments);
@@ -74,15 +80,32 @@ public class Lecturer extends Marker{
                      break;
                 case 'o':
                       logout();
+                case 'w':
+                    // set submission as withheld
+                    setWithheldFn();
+                    break;
                 default:
                     System.err.println(command + " is not a valid command! Try again!");
                     break;
             }
             if (result) break;
         }
+        
+        
+  
     }
 
-
+    private boolean createFn(String[] arguments) {
+        if (arguments.length != 2) {
+            System.out.print("You must specify a spec file and a student list");
+            return false;
+        } else {
+            String assignFile = arguments[0];
+            String studFile = arguments[1];
+            assignment = new Assignment(assignFile, studFile);
+            return false;
+        }
+    }
 
 
 }

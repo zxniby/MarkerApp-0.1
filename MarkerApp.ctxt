@@ -1,21 +1,5 @@
 #BlueJ class context
-comment0.params=
-comment0.target=void\ UILoop()
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
 comment0.text=\n\ This\ function\ iteratively\ performs\ user\ actions\ according\ to\ user\ commends.\n\ Depending\ on\ a\ particular\ input\ character,\ a\ function\ will\ be\ performed.\n\ However,\ please\ ensure\ that\ each\ function\ performs\ correctly\ with\ appropriate\n\ input\ parameters.\n
-comment1.params=
-comment1.target=boolean\ quitFn()
-comment2.params=arguments
-comment2.target=boolean\ createFn(java.lang.String[])
-comment3.params=arguments
-comment3.target=boolean\ markFn(java.lang.String[])
-comment4.params=arguments
-comment4.target=boolean\ saveFn(java.lang.String[])
-comment5.params=arguments
-comment5.target=boolean\ loadFn(java.lang.String[])
-comment6.params=arguments
-comment6.target=boolean\ statusFn(java.lang.String[])
-comment7.params=arguments
-comment7.target=boolean\ reportFn(java.lang.String[])
-comment8.params=args
-comment8.target=void\ main(java.lang.String[])
-numComments=9
+numComments=1
