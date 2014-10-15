@@ -9,8 +9,6 @@ import java.io.FileReader;
 
 
 public class Administrator extends User{
-// 	private String UserName;
-// 	private String Password;
 	List<Lecturer> lecturers;
 	List<Unit> units;
 
@@ -104,11 +102,14 @@ public class Administrator extends User{
                     //result = quitFn();
                     break;
                 case 'o':
-                	//tempAdmin.logout();
+                	tempAdmin.logout();
                 	break;
                 case 'h':
                     //tempAdmin.help();
                     break;
+                case 'c':
+                	tempAdmin.createUnit();
+                	break;
                 default:
                     //System.err.println(command + " is not a valid command! Try again!");
                     break;
@@ -116,4 +117,10 @@ public class Administrator extends User{
             if (result) break;
         }
     }
+
+    private void createUnit() {
+    	Unit unit = new Unit();
+    	unit.create();
+    }
+
 }
